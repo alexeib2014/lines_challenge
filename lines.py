@@ -31,4 +31,6 @@ for i0 in range(0, recno):
             outputs[output] = 1
 
 
-print(outputs)
+for output in outputs:
+    if outputs[output] > 2:
+        print(output)
