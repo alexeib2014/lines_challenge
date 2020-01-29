@@ -16,10 +16,19 @@ def get_line_mb(p0, p1):
 
 
 coords = pd.read_csv('test.csv', comment='#', header=None)
-print(coords)
+recno = len(coords.index)
 
-p0 = coords.ix[0]
-p1 = coords.ix[1]
+outputs = {}
+for i0 in range(0, recno):
+    for i1 in range(i0+1, recno):
+        p0 = coords.ix[i0]
+        p1 = coords.ix[i1]
 
-m, b = get_line_mb(p0, p1)
-print('m=%s, b=%s' % (m, b))
+        output = '(m=%s, b=%s)' % get_line_mb(p0, p1)
+        try:
+            outputs[output] += 1
+        except Exception:
+            outputs[output] = 1
+
+
+print(outputs)
